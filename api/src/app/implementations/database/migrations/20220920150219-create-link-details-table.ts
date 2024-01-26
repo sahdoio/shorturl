@@ -1,34 +1,31 @@
-'use strict';
+'use strict'
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('taskStatus', { 
+    return queryInterface.createTable('linkDetails', {
       id: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
+      linkId: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+        references: { model: 'links', key: 'id' }
+      },
       name: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
       },
-      createdAt: {
-        type: Sequelize.DataTypes.DATE,
+      value: {
+        type: Sequelize.DataTypes.STRING,
         allowNull: false
-      },
-      updatedAt: {
-        type: Sequelize.DataTypes.DATE,
-        allowNull: false
-      },
-      deletedAt: {
-        type: Sequelize.DataTypes.DATE,
-        allowNull: true
       }
-    });
+    })
   },
 
   async down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('taskStatus');
+    return queryInterface.dropTable('linkDetails')
   }
-};
+}
