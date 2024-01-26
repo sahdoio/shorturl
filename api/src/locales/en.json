@@ -1,0 +1,11 @@
+{
+	"NOT_FOUND": "Resource not found",
+	"LOGIN_SUCCESSFUL": "Login successful",
+	"INVALID_LOGIN": "Invalid email, password and/or token(s)",
+	"CREATE_USER_SUCCESSFUL": "User created successfully",
+	"ERROR_EXISTING_USER": "User already exists",
+	"CREATE_TASK_SUCCESSFUL": "Task created successfully",
+	"FIND_TASK_SUCCESSFUL": "Tasks retrieved successfully",
+	"DELETE_TASK_SUCCESSFUL": "Task deleted successfully",
+	"UPDATE_TASK_SUCCESSFUL": "Task updated successfully"
+}

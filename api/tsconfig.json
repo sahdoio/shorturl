@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "commonjs",
+    "target": "es2018",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "experimentalDecorators": true, 
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src", "tests", "env.ts"],
+  "exclude": ["node_modules", ".vscode"]
+}

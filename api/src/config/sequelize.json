@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "secret",
+    "database": "shorturl",
+    "host": "shorturl-db",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "admin",
+    "password": "secret",
+    "database": "shorturl-test",
+    "host": "shorturl-test-db",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "admin",
+    "password": "secret",
+    "database": "shorturl",
+    "host": "shorturl-db",
+    "dialect": "postgres"
+  }
+}

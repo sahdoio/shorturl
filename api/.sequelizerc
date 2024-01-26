@@ -1,0 +1,10 @@
+// .sequelizerc
+
+const { resolve } = require('path');
+
+module.exports = {
+  'config': resolve('src/config/sequelize.json'),
+  'models-path': resolve('src/app/implementations/database/entities'),
+  'seeders-path': resolve('src/app/implementations/database/seeders'),
+  'migrations-path': resolve('src/app/implementations/database/migrations')
+};
