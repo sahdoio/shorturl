@@ -6,6 +6,7 @@ module.exports = {
     for (let i = 1; i <= 1000; i++) {
       links.push({
         url: `https://example.com/page${ i }`,
+        urlHash: `hash${ i }`,
         pageViews: Math.floor(Math.random() * 100), // Random page view count for demonstration
         createdAt: new Date(),
         updatedAt: new Date(),

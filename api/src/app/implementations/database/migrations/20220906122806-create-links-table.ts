@@ -13,6 +13,11 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
       },
+      urlHash: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+        unique: true
+      },
       pageViews: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
