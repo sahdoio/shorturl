@@ -17,6 +17,9 @@ export class Link extends Model<Link> implements LinkEntity {
   url: string
 
   @Column
+  urlHash: string
+
+  @Column
   pageViews: number
 
   @CreatedAt

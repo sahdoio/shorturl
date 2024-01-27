@@ -1,7 +1,12 @@
 import { Repository } from '../repository'
 import { LinkEntity } from '../../../../domain/entities/Link'
-import { CreateTaskDto } from '../../../../domain/useCases/task/create-task'
+
+export interface CreateLinkRepositoryDto {
+  url: string
+  urlHash: string
+  pageViews?: string
+}
 
 export interface CreateLinkRepository extends Repository {
-  exec: (data: CreateTaskDto) => Promise<LinkEntity>
+  exec: (data: CreateLinkRepositoryDto) => Promise<LinkEntity>
 }

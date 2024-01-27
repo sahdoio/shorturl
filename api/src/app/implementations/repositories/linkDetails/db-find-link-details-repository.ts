@@ -2,10 +2,10 @@ import { PaginatedResult } from '../../../data/protocols/repositories/repository
 import { UcOptions } from '../../../domain/protocols/uc-options'
 import { FindUserDto } from '../../../domain/useCases/user/find-user'
 import { DbRepository } from '../repository'
-import { LinkDetails } from '../../database/entities/LinkDetails
+import { LinkDetails } from '../../database/entities/LinkDetails'
 import { ISequelizeORM } from '../../../data/protocols/utils/sequelize'
 import { Repository } from 'sequelize-typescript'
-import {FindLinkDetailsRepository } from '../../../data/protocols/repositories/link-details/find-link-details-repository'
+import { FindLinkDetailsRepository } from '../../../data/protocols/repositories/link-details/find-link-details-repository'
 import { LinkDetailsEntity } from '../../../domain/entities/LinkDetails'
 
 export class DbFindLinkDetailsRepository extends DbRepository implements FindLinkDetailsRepository {

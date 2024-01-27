@@ -35,6 +35,7 @@ export class Application {
   private setupDotEnv(testing: boolean = false): void {
     env.ENV = testing ? 'test' : process.env.NODE_ENV ?? 'production'
     env.PORT = process.env.APP_PORT
+    env.BASE_URL = process.env.BASE_URL
     env.database.DEFAULT = {
       DRIVER: process.env.DB_DRIVER,
       HOST: process.env.DB_HOST,
@@ -59,6 +60,7 @@ export class Application {
     this.app.use(cors())
     this.app.use((error, req, res, next) => {
       if (error instanceof SyntaxError) {
+        // @ts-ignore
         res.status(StatusCodes.OK).json({
           msg: i18n.__('BAD_REQUEST')
         })
@@ -71,7 +73,7 @@ export class Application {
   private setupRoutes(): void {
     this.app.get('/', (req: Request, res: Response) => {
       res.send(`API is alive in ${process.env.NODE_ENV} environment`)
-    })    
+    })
     const router = Router()
     this.app.use(env.ROUTE_ROOT, router)
     readdirSync(this.routesDir).map(async file => {
