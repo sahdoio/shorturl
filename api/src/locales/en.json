@@ -1,6 +1,5 @@
 {
 	"NOT_FOUND": "Resource not found",
-	"LOGIN_SUCCESSFUL": "Login successful",
-	"INVALID_LOGIN": "Invalid email, password and/or token(s)",
-	"SHORTENED_URL_SUCCESSFULLY": "Shortened url successfully"
+	"SHORTENED_URL_SUCCESSFULLY": "Shortened url successfully",
+	"URL_FOUND_SUCCESSFULLY": "Url found successfully"
 }

@@ -4,12 +4,11 @@ import { DbRepository } from '../repository'
 import { ISequelizeORM } from '../../../data/protocols/utils/sequelize'
 import { Repository } from 'sequelize-typescript'
 import { Op } from 'sequelize'
-import { FindTaskDto } from '../../../domain/useCases/task/list-tasks'
-import { FindLinkRepository } from '../../../data/protocols/repositories/link/find-link-repository'
+import { FindLinkDto, FindLinkRepository } from '../../../data/protocols/repositories/link/find-link-repository'
 import { Link } from '../../database/entities/Link'
 import { LinkEntity } from '../../../domain/entities/Link'
 
-export class DbFindTaskRepository extends DbRepository implements FindLinkRepository {
+export class DbFindLinkRepository extends DbRepository implements FindLinkRepository {
   constructor(
     protected dbORM: ISequelizeORM
   ) {
@@ -22,9 +21,9 @@ export class DbFindTaskRepository extends DbRepository implements FindLinkReposi
     return dbORMClient.getRepository(Link)
   }
 
-  private getQueryData(data: FindTaskDto): any {
+  private getQueryData(data: FindLinkDto): any {
     const queryData: any = {}
-    const likeAttributes = ['name', 'description']
+    const likeAttributes = ['url']
     for (let key in data) {
       if (data[key]) {
         if (likeAttributes.includes(key)) {
@@ -37,13 +36,13 @@ export class DbFindTaskRepository extends DbRepository implements FindLinkReposi
     return queryData
   }
 
-  async findOne(data: FindTaskDto): Promise<LinkEntity> {
+  async findOne(data: FindLinkDto): Promise<LinkEntity> {
     const repo = await this.getRepo()
     const queryData = this.getQueryData(data)
     return Object.keys(queryData).length > 0 ? await repo.findOne({ where: queryData }) : null
   }
 
-  async findAll(data: FindTaskDto, opts?: UcOptions): Promise<PaginatedResult<LinkEntity[]>> {
+  async findAll(data: FindLinkDto, opts?: UcOptions): Promise<PaginatedResult<LinkEntity[]>> {
     const repo = await this.getRepo()
     const queryData = this.getQueryData(data)
     const setupPaginationData = await this.setupPagination(opts)
