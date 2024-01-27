@@ -1,4 +1,4 @@
-import { TaskEntity } from '../../../domain/entities/Task'
+import { TaskEntity } from '../../../domain/entities/Link'
 import { Result } from '../../../domain/protocols/result'
 import { UcOptions } from '../../../domain/protocols/uc-options'
 import { FindTaskDto, ListTasksUc } from '../../../domain/useCases/task/list-tasks'

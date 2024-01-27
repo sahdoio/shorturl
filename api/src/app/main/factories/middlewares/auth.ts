@@ -3,7 +3,7 @@ import { Authorizer } from '../../../data/useCases/auth/authorizer'
 import { SequelizeORM } from '../../../implementations/database/sequelize'
 import { JsonWebToken } from '../../../implementations/encrypters/jwt'
 import { Log } from '../../../implementations/helpers/log'
-import { DbFindUserRepository } from '../../../implementations/repositories/user/db-find-user-repository'
+import { DbFindLinkDetailsRepository } from '../../../implementations/repositories/linkDetails/db-find-link-details-repository'
 import { AuthorizationMiddleware } from '../../../presentation/middlewares/authorization'
 
 export const makeAuthMiddleware = (): AuthorizationMiddleware => {
@@ -14,7 +14,7 @@ export const makeAuthMiddleware = (): AuthorizationMiddleware => {
     expiresIn: env.security.JWT_EXPIRES_IN
   }
   const dbORM = SequelizeORM.getInstance()
-  const findUserRepository = new DbFindUserRepository(dbORM)
+  const findUserRepository = new DbFindLinkDetailsRepository(dbORM)
   const auth = new Authorizer(jwt, jwtConfig, findUserRepository, log)
   const middleware = new AuthorizationMiddleware(auth)
   return middleware

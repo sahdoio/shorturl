@@ -1,4 +1,4 @@
-import { TaskEntity } from "../../../../app/domain/entities/Task";
+import { TaskEntity } from "../../../../app/domain/entities/Link";
 import Config from "../../../../config/config";
 
 export const taskEntityMock: TaskEntity = {

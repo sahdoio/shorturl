@@ -1,5 +1,5 @@
 import { PaginatedResult } from '../../../../../app/data/protocols/repositories/repository'
-import { TaskEntity } from '../../../../../app/domain/entities/Task'
+import { TaskEntity } from '../../../../../app/domain/entities/Link'
 import { Result } from '../../../../../app/domain/protocols/result'
 import { FindTaskDto, ListTasksUc } from '../../../../../app/domain/useCases/task/list-tasks'
 import { findAllTasksMock } from '../../../mocks/task/find-all-tasks-mock'

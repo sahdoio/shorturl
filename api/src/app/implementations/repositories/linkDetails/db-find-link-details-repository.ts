@@ -1,25 +1,24 @@
-import { FindUserRepository } from '../../../data/protocols/repositories/user/find-user-repository'
 import { PaginatedResult } from '../../../data/protocols/repositories/repository'
-import { UserEntity } from '../../../domain/entities/User'
 import { UcOptions } from '../../../domain/protocols/uc-options'
 import { FindUserDto } from '../../../domain/useCases/user/find-user'
 import { DbRepository } from '../repository'
-import { User } from '../../database/entities/User'
+import { LinkDetails } from '../../database/entities/LinkDetails
 import { ISequelizeORM } from '../../../data/protocols/utils/sequelize'
 import { Repository } from 'sequelize-typescript'
+import {FindLinkDetailsRepository } from '../../../data/protocols/repositories/link-details/find-link-details-repository'
+import { LinkDetailsEntity } from '../../../domain/entities/LinkDetails'
 
-export class DbFindUserRepository extends DbRepository implements FindUserRepository {
+export class DbFindLinkDetailsRepository extends DbRepository implements FindLinkDetailsRepository {
   constructor(
     protected dbORM: ISequelizeORM
   ) {
     super()
-    this.entity = User
+    this.entity = LinkDetails
   }
 
-  private async getRepo(): Promise<Repository<User>> {
+  private async getRepo(): Promise<Repository<LinkDetails>> {
     const dbORMClient = await this.dbORM.getClient()
-    const repo = await dbORMClient.getRepository(User)
-    return repo
+    return dbORMClient.getRepository(LinkDetails)
   }
 
   private getQueryData(data: FindUserDto) {
@@ -32,14 +31,13 @@ export class DbFindUserRepository extends DbRepository implements FindUserReposi
     return queryData
   }
 
-  async findOne(data: FindUserDto, opts?: UcOptions): Promise<UserEntity> {
+  async findOne(data: FindUserDto, opts?: UcOptions): Promise<LinkDetailsEntity> {
     const repo = await this.getRepo()
     const queryData = this.getQueryData(data)
-    const payload = Object.keys(queryData).length > 0 ? await repo.findOne({ where: queryData }) : null
-    return payload
+    return Object.keys(queryData).length > 0 ? await repo.findOne({ where: queryData }) : null
   }
 
-  async findAll(data: FindUserDto, opts?: UcOptions): Promise<PaginatedResult<UserEntity[]>> {
+  async findAll(data: FindUserDto, opts?: UcOptions): Promise<PaginatedResult<LinkDetailsEntity[]>> {
     const repo = await this.getRepo()
     const queryData = this.getQueryData(data)
     const setupPaginationData = await this.setupPagination(opts)

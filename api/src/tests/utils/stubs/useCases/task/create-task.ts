@@ -1,4 +1,4 @@
-import { TaskEntity } from '../../../../../app/domain/entities/Task'
+import { TaskEntity } from '../../../../../app/domain/entities/Link'
 import { Result } from '../../../../../app/domain/protocols/result'
 import { CreateTaskDto, CreateTaskUc } from '../../../../../app/domain/useCases/task/create-task'
 import { taskEntityMock } from '../../../mocks/task/task-entity-mock'

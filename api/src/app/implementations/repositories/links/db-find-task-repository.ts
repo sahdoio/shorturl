@@ -2,25 +2,24 @@ import { PaginatedResult } from '../../../data/protocols/repositories/repository
 import { UcOptions } from '../../../domain/protocols/uc-options'
 import { DbRepository } from '../repository'
 import { ISequelizeORM } from '../../../data/protocols/utils/sequelize'
-import { FindTaskRepository } from '../../../data/protocols/repositories/task/find-task-repository'
-import { Task } from '../../database/entities/Task'
 import { Repository } from 'sequelize-typescript'
 import { Op } from 'sequelize'
-import { TaskEntity } from '../../../domain/entities/Task'
 import { FindTaskDto } from '../../../domain/useCases/task/list-tasks'
+import { FindLinkRepository } from '../../../data/protocols/repositories/link/find-link-repository'
+import { Link } from '../../database/entities/Link'
+import { LinkEntity } from '../../../domain/entities/Link'
 
-export class DbFindTaskRepository extends DbRepository implements FindTaskRepository {
+export class DbFindTaskRepository extends DbRepository implements FindLinkRepository {
   constructor(
     protected dbORM: ISequelizeORM
   ) {
     super()
-    this.entity = Task
+    this.entity = Link
   }
 
-  private async getRepo(): Promise<Repository<Task>> {
+  private async getRepo(): Promise<Repository<Link>> {
     const dbORMClient = await this.dbORM.getClient()
-    const repo = await dbORMClient.getRepository(Task)
-    return repo
+    return dbORMClient.getRepository(Link)
   }
 
   private getQueryData(data: FindTaskDto): any {
@@ -38,14 +37,13 @@ export class DbFindTaskRepository extends DbRepository implements FindTaskReposi
     return queryData
   }
 
-  async findOne(data: FindTaskDto): Promise<TaskEntity> {
+  async findOne(data: FindTaskDto): Promise<LinkEntity> {
     const repo = await this.getRepo()
     const queryData = this.getQueryData(data)
-    const payload = Object.keys(queryData).length > 0 ? await repo.findOne({ where: queryData }) : null
-    return payload
+    return Object.keys(queryData).length > 0 ? await repo.findOne({ where: queryData }) : null
   }
 
-  async findAll(data: FindTaskDto, opts?: UcOptions): Promise<PaginatedResult<TaskEntity[]>> {
+  async findAll(data: FindTaskDto, opts?: UcOptions): Promise<PaginatedResult<LinkEntity[]>> {
     const repo = await this.getRepo()
     const queryData = this.getQueryData(data)
     const setupPaginationData = await this.setupPagination(opts)

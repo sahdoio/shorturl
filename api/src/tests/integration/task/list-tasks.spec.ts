@@ -3,15 +3,15 @@ import { Application } from '../../../app'
 import { FieldValidator } from '../../../app/data/protocols/utils/field-validator'
 import { Internationalization } from '../../../app/data/protocols/utils/internationalization'
 import { ListTasks } from '../../../app/data/useCases/task/list-tasks'
-import { TaskEntity } from '../../../app/domain/entities/Task'
+import { TaskEntity } from '../../../app/domain/entities/Link'
 import { CreateTaskDto } from '../../../app/domain/useCases/task/create-task'
 import { ListTasksUc } from '../../../app/domain/useCases/task/list-tasks'
 import { SequelizeORM } from '../../../app/implementations/database/sequelize'
 import { Log } from '../../../app/implementations/helpers/log'
 import { PersonalFieldValidator } from '../../../app/implementations/helpers/validate-fields'
 import { I18n } from '../../../app/implementations/internationalization/i18n'
-import { DbCreateTaskRepository } from '../../../app/implementations/repositories/task/db-create-task-repository'
-import { DbFindTaskRepository } from '../../../app/implementations/repositories/task/db-find-task-repository'
+import { DbCreateLinkRepository } from '../../../app/implementations/repositories/links/db-create-link-repository'
+import { DbFindTaskRepository } from '../../../app/implementations/repositories/links/db-find-task-repository'
 import { ListTasksController } from '../../../app/presentation/controllers/task/list-tasks'
 import { HttpRequest } from '../../../app/presentation/protocols/http'
 import Config from '../../../config/config'
@@ -31,7 +31,7 @@ const makeSut = async (): Promise<SutTypes> => {
   const i18n = new I18n()
   const dbORM = SequelizeORM.getInstance(Config.DATABASE.SOURCE.TEST)
   const findTaskRepository = new DbFindTaskRepository(dbORM)
-  const createTaskRepository = new DbCreateTaskRepository(dbORM)
+  const createTaskRepository = new DbCreateLinkRepository(dbORM)
   const uc = new ListTasks(i18n, findTaskRepository)
   const personalValidator = new PersonalFieldValidator()
   const log = new Log

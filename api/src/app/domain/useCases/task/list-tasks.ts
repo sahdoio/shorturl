@@ -1,5 +1,5 @@
 import { PaginatedResult } from '../../../data/protocols/repositories/repository'
-import { TaskEntity } from '../../entities/Task'
+import { TaskEntity } from '../../entities/Link'
 import { Result } from '../../protocols/result'
 import { UcOptions } from '../../protocols/uc-options'
 

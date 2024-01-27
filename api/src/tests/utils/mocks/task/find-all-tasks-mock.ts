@@ -1,5 +1,5 @@
 import { PaginatedResult } from "../../../../app/data/protocols/repositories/repository";
-import { TaskEntity } from "../../../../app/domain/entities/Task";
+import { TaskEntity } from "../../../../app/domain/entities/Link";
 import { repositoryMetadataMock } from "../repository-metadata-mock";
 import { taskEntityMock } from "./task-entity-mock";
 

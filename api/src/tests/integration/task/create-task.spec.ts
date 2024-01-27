@@ -8,7 +8,7 @@ import { SequelizeORM } from '../../../app/implementations/database/sequelize'
 import { Log } from '../../../app/implementations/helpers/log'
 import { PersonalFieldValidator } from '../../../app/implementations/helpers/validate-fields'
 import { I18n } from '../../../app/implementations/internationalization/i18n'
-import { DbCreateTaskRepository } from '../../../app/implementations/repositories/task/db-create-task-repository'
+import { DbCreateLinkRepository } from '../../../app/implementations/repositories/links/db-create-link-repository'
 import { CreateTaskController } from '../../../app/presentation/controllers/task/create-task'
 import { missingFields } from '../../../app/presentation/helpers/response-builder'
 import { HttpRequest } from '../../../app/presentation/protocols/http'
@@ -28,7 +28,7 @@ const makeSut = (): SutTypes => {
   new Application(true)
   const i18n = new I18n()
   const dbORM = SequelizeORM.getInstance(Config.DATABASE.SOURCE.TEST)
-  const createTaskRepository = new DbCreateTaskRepository(dbORM)
+  const createTaskRepository = new DbCreateLinkRepository(dbORM)
   const uc = new CreateTask(i18n, createTaskRepository)
   const personalValidator = new PersonalFieldValidator()
   const log = new Log

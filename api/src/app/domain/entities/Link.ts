@@ -1,6 +1,7 @@
-export interface TaskStatusEntity {
+export interface LinkEntity {
   id: number
-  name: string
+  url: string,
+  pageViews: number
   createdAt: Date
   updatedAt: Date
   deletedAt?: Date

@@ -3,8 +3,8 @@ import { SequelizeORM } from '../../../../implementations/database/sequelize'
 import { Log } from '../../../../implementations/helpers/log'
 import { PersonalFieldValidator } from '../../../../implementations/helpers/validate-fields'
 import { I18n } from '../../../../implementations/internationalization/i18n'
-import { DbFindTaskRepository } from '../../../../implementations/repositories/task/db-find-task-repository'
-import { DbUpdateTaskRepository } from '../../../../implementations/repositories/task/db-update-task-repository'
+import { DbFindTaskRepository } from '../../../../implementations/repositories/links/db-find-task-repository'
+import { DbUpdateTaskRepository } from '../../../../implementations/repositories/links/db-update-task-repository'
 import { UpdateTaskController } from '../../../../presentation/controllers/task/update-task'
 
 export const makeUpdateTaskController = (): UpdateTaskController => {

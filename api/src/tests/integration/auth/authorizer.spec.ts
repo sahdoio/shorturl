@@ -4,7 +4,7 @@ import { AuthorizerUc, LoggedUser } from '../../../app/domain/useCases/auth/auth
 import env from '../../../env'
 import { JsonWebToken } from '../../../app/implementations/encrypters/jwt'
 import { Log } from '../../../app/implementations/helpers/log'
-import { DbFindUserRepository } from '../../../app/implementations/repositories/user/db-find-user-repository'
+import { DbFindLinkDetailsRepository } from '../../../app/implementations/repositories/linkDetails/db-find-link-details-repository'
 import { userEntityMock } from '../../utils/mocks/user/user-entity-mock'
 import { SequelizeORM } from '../../../app/implementations/database/sequelize'
 import Config from '../../../config/config'
@@ -13,7 +13,7 @@ import { JWT } from '../../../app/data/protocols/auth/jwt'
 import { faker } from '@faker-js/faker'
 import { CreateUserDto } from '../../../app/domain/useCases/user/create-user'
 import { Bcrypt } from '../../../app/implementations/encrypters/bcrypt'
-import { DbCreateUserRepository } from '../../../app/implementations/repositories/user/db-create-user-repository'
+import { DbCreateLinkDetailsRepository } from '../../../app/implementations/repositories/linkDetails/db-create-link-details-repository'
 
 interface LoginCredentials {
   email: string,
@@ -39,8 +39,8 @@ const makeSut = async (): Promise<SutTypes> => {
     expiresIn: env.security.JWT_EXPIRES_IN
   }
   const dbORM = SequelizeORM.getInstance(Config.DATABASE.SOURCE.TEST)
-  const findUserRepository = new DbFindUserRepository(dbORM)
-  const createUserRepository = new DbCreateUserRepository(dbORM)
+  const findUserRepository = new DbFindLinkDetailsRepository(dbORM)
+  const createUserRepository = new DbCreateLinkDetailsRepository(dbORM)
   const loginCredentials: LoginCredentials = {
     email: userEntityMock.email,
     password: userEntityMock.password

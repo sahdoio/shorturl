@@ -4,14 +4,14 @@ import { Login } from '../../../../data/useCases/auth/login'
 import { JsonWebToken } from '../../../../implementations/encrypters/jwt'
 import { I18n } from '../../../../implementations/internationalization/i18n'
 import { PersonalFieldValidator } from '../../../../implementations/helpers/validate-fields'
-import { DbFindUserRepository } from '../../../../implementations/repositories/user/db-find-user-repository'
+import { DbFindLinkDetailsRepository } from '../../../../implementations/repositories/linkDetails/db-find-link-details-repository'
 import { Bcrypt } from '../../../../implementations/encrypters/bcrypt'
 import { SequelizeORM } from '../../../../implementations/database/sequelize'
 import { Log } from '../../../../implementations/helpers/log'
 
 export const makeLoginController = (): LoginController => {
   const dbORM = SequelizeORM.getInstance()
-  const findUserRepository = new DbFindUserRepository(dbORM)
+  const findUserRepository = new DbFindLinkDetailsRepository(dbORM)
   const bcrypt = new Bcrypt()
   const log = new Log
   const jsonWebToken = new JsonWebToken(log)

@@ -12,10 +12,10 @@ import { JsonWebToken } from '../../../app/implementations/encrypters/jwt'
 import env from '../../../env'
 import { SequelizeORM } from '../../../app/implementations/database/sequelize'
 import Config from '../../../config/config'
-import { DbFindUserRepository } from '../../../app/implementations/repositories/user/db-find-user-repository'
+import { DbFindLinkDetailsRepository } from '../../../app/implementations/repositories/linkDetails/db-find-link-details-repository'
 import { CreateUserDto } from '../../../app/domain/useCases/user/create-user'
 import { faker } from '@faker-js/faker'
-import { DbCreateUserRepository } from '../../../app/implementations/repositories/user/db-create-user-repository'
+import { DbCreateLinkDetailsRepository } from '../../../app/implementations/repositories/linkDetails/db-create-link-details-repository'
 import { Bcrypt } from '../../../app/implementations/encrypters/bcrypt'
 
 interface SutTypes {
@@ -35,8 +35,8 @@ const makeSut = async (): Promise<SutTypes> => {
   }
   const bcrypt = new Bcrypt
   const dbORM = SequelizeORM.getInstance(Config.DATABASE.SOURCE.TEST)
-  const findUserRepository = new DbFindUserRepository(dbORM)
-  const createUserRepository = new DbCreateUserRepository(dbORM)
+  const findUserRepository = new DbFindLinkDetailsRepository(dbORM)
+  const createUserRepository = new DbCreateLinkDetailsRepository(dbORM)
   const uc = new Authorizer(jwt, jwtConfig, findUserRepository, log)
   const sut = new AuthorizationMiddleware(uc)
   const userData: CreateUserDto = {

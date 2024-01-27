@@ -1,4 +1,4 @@
-import { TaskEntity } from '../../entities/Task'
+import { TaskEntity } from '../../entities/Link'
 import { Result } from '../../protocols/result'
 
 export interface CreateTaskDto {

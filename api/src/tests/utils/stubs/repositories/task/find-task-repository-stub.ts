@@ -1,6 +1,6 @@
 import { PaginatedResult, RepositoryMetadata } from '../../../../../app/data/protocols/repositories/repository'
 import { FindTaskRepository } from '../../../../../app/data/protocols/repositories/task/find-task-repository'
-import { TaskEntity } from '../../../../../app/domain/entities/Task'
+import { TaskEntity } from '../../../../../app/domain/entities/Link'
 import { UcOptions } from '../../../../../app/domain/protocols/uc-options'
 import { FindTaskDto } from '../../../../../app/domain/useCases/task/list-tasks'
 import { taskEntityMock } from '../../../mocks/task/task-entity-mock'

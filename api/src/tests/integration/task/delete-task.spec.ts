@@ -3,16 +3,16 @@ import { Application } from '../../../app'
 import { FieldValidator } from '../../../app/data/protocols/utils/field-validator'
 import { Internationalization } from '../../../app/data/protocols/utils/internationalization'
 import { DeleteTask } from '../../../app/data/useCases/task/delete-task'
-import { TaskEntity } from '../../../app/domain/entities/Task'
+import { TaskEntity } from '../../../app/domain/entities/Link'
 import { CreateTaskDto } from '../../../app/domain/useCases/task/create-task'
 import { DeleteTaskUc } from '../../../app/domain/useCases/task/delete-task'
 import { SequelizeORM } from '../../../app/implementations/database/sequelize'
 import { Log } from '../../../app/implementations/helpers/log'
 import { PersonalFieldValidator } from '../../../app/implementations/helpers/validate-fields'
 import { I18n } from '../../../app/implementations/internationalization/i18n'
-import { DbCreateTaskRepository } from '../../../app/implementations/repositories/task/db-create-task-repository'
-import { DbDeleteTaskRepository } from '../../../app/implementations/repositories/task/db-delete-task-repository'
-import { DbFindTaskRepository } from '../../../app/implementations/repositories/task/db-find-task-repository'
+import { DbCreateLinkRepository } from '../../../app/implementations/repositories/links/db-create-link-repository'
+import { DbDeleteTaskRepository } from '../../../app/implementations/repositories/links/db-delete-task-repository'
+import { DbFindTaskRepository } from '../../../app/implementations/repositories/links/db-find-task-repository'
 import { DeleteTaskController } from '../../../app/presentation/controllers/task/delete-task'
 import { HttpRequest } from '../../../app/presentation/protocols/http'
 import Config from '../../../config/config'
@@ -33,7 +33,7 @@ const makeSut = async (): Promise<SutTypes> => {
   const dbORM = SequelizeORM.getInstance(Config.DATABASE.SOURCE.TEST)
   const findTaskRepository = new DbFindTaskRepository(dbORM)
   const deleteTaskRepository = new DbDeleteTaskRepository(dbORM)
-  const createTaskRepository = new DbCreateTaskRepository(dbORM)
+  const createTaskRepository = new DbCreateLinkRepository(dbORM)
   const uc = new DeleteTask(i18n, findTaskRepository, deleteTaskRepository)
   const personalValidator = new PersonalFieldValidator()
   const log = new Log

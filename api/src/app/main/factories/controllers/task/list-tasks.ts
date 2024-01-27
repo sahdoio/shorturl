@@ -3,7 +3,7 @@ import { SequelizeORM } from '../../../../implementations/database/sequelize'
 import { Log } from '../../../../implementations/helpers/log'
 import { PersonalFieldValidator } from '../../../../implementations/helpers/validate-fields'
 import { I18n } from '../../../../implementations/internationalization/i18n'
-import { DbFindTaskRepository } from '../../../../implementations/repositories/task/db-find-task-repository'
+import { DbFindTaskRepository } from '../../../../implementations/repositories/links/db-find-task-repository'
 import { ListTasksController } from '../../../../presentation/controllers/task/list-tasks'
 
 export const makeListTasksController = (): ListTasksController => {

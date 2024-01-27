@@ -11,8 +11,8 @@ import { CreateUser } from '../../../app/data/useCases/user/create-user'
 import { PersonalFieldValidator } from '../../../app/implementations/helpers/validate-fields'
 import { I18n } from '../../../app/implementations/internationalization/i18n'
 import { SequelizeORM } from '../../../app/implementations/database/sequelize'
-import { DbCreateUserRepository } from '../../../app/implementations/repositories/user/db-create-user-repository'
-import { DbFindUserRepository } from '../../../app/implementations/repositories/user/db-find-user-repository'
+import { DbCreateLinkDetailsRepository } from '../../../app/implementations/repositories/linkDetails/db-create-link-details-repository'
+import { DbFindLinkDetailsRepository } from '../../../app/implementations/repositories/linkDetails/db-find-link-details-repository'
 import { Bcrypt } from '../../../app/implementations/encrypters/bcrypt'
 import { faker } from '@faker-js/faker'
 import { CreateUserDto } from '../../../app/domain/useCases/user/create-user'
@@ -31,8 +31,8 @@ const makeSut = async (): Promise<SutTypes> => {
   new Application(true)
   const i18n = new I18n()
   const dbORM = SequelizeORM.getInstance(Config.DATABASE.SOURCE.TEST)
-  const createUserRepository = new DbCreateUserRepository(dbORM)
-  const findUserRepository = new DbFindUserRepository(dbORM)
+  const createUserRepository = new DbCreateLinkDetailsRepository(dbORM)
+  const findUserRepository = new DbFindLinkDetailsRepository(dbORM)
   const bcrypt = new Bcrypt()
   const uc = new CreateUser(i18n, bcrypt, createUserRepository, findUserRepository)
   const personalValidator = new PersonalFieldValidator()
