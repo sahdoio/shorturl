@@ -5,12 +5,14 @@ import { I18n } from '../../../../implementations/internationalization/i18n'
 import { GetUrlController } from '../../../../presentation/controllers/url/get-url'
 import { DbFindLinkRepository } from '../../../../implementations/repositories/links/db-find-link-repository'
 import { GetUrl } from '../../../../data/useCases/url/get-url'
+import { DbUpdateLinkRepository } from '../../../../implementations/repositories/links/db-update-link-repository'
 
 export const makeGetUrlController = (): GetUrlController => {
   const i18n = new I18n()
   const dbORM = SequelizeORM.getInstance()
   const findLinkRepository = new DbFindLinkRepository(dbORM)
-  const uc = new GetUrl(i18n, findLinkRepository)
+  const updateLinkRepository = new DbUpdateLinkRepository(dbORM)
+  const uc = new GetUrl(i18n, findLinkRepository, updateLinkRepository)
   const validator = new PersonalFieldValidator()
   const log = new Log
   return  new GetUrlController(validator, log, uc)

@@ -4,7 +4,7 @@ import { LinkEntity } from '../../../../domain/entities/Link'
 export interface CreateLinkRepositoryDto {
   url: string
   urlHash: string
-  pageViews?: string
+  pageViews?: number
 }
 
 export interface CreateLinkRepository extends Repository {

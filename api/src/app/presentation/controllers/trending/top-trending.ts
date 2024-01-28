@@ -3,20 +3,18 @@ import { ILog } from '../../../data/protocols/utils/log'
 import { serverError, serverResponse } from '../../helpers/http'
 import { Controller } from '../../protocols/controller'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
-import { GetUrlDto, GetUrlUc } from '../../../domain/useCases/url/get-url'
+import { TopTrendingUc } from '../../../domain/useCases/trending/top-trending'
 
-export class GetUrlController implements Controller {
+export class TopTrendingController implements Controller {
   constructor(
-    private readonly validator: FieldValidator,
     private readonly log: ILog,
-    private readonly uc: GetUrlUc
+    private readonly uc: TopTrendingUc
   ) { }
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const { hash } = httpRequest.params
-      const data: GetUrlDto = { hash }
-      const res = await this.uc.exec(data)
+      const res = await this.uc.exec()
       return serverResponse(res)
     } catch (err) {
       this.log.error(err)

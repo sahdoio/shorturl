@@ -2,5 +2,6 @@
 	"NOT_FOUND": "Resource not found",
 	"SHORTENED_URL_SUCCESSFULLY": "Shortened url successfully",
 	"URL_FOUND_SUCCESSFULLY": "Url found successfully",
-	"CRAWLER_COMPLETED_SUCCESSFUL": "Crawler executed and completed successfully"
+	"CRAWLER_COMPLETED_SUCCESSFUL": "Crawler executed and completed successfully",
+	"TOP_TRENDING_EXECUTED_SUCCESSFULLY": "Top trending executed successfully"
 }
