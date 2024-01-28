@@ -3,7 +3,6 @@ import { ILog } from '../../../data/protocols/utils/log'
 import { serverError, serverResponse } from '../../helpers/http'
 import { Controller } from '../../protocols/controller'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
-import { missingFields } from '../../helpers/response-builder'
 import { GetUrlDto, GetUrlUc } from '../../../domain/useCases/url/get-url'
 
 export class GetUrlController implements Controller {

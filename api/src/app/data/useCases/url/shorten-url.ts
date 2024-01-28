@@ -19,7 +19,7 @@ export class ShortenUrl implements ShortenUrlUc {
     const { url } = data
     const shortUrl = this.urlShortener.exec(data.url)
     this.queueManager.addJob('url-crawler', { url, urlHash: shortUrl.urlHash })
-    await this.createLinkRepository.exec({ url: data.url, urlHash: shortUrl.urlHash })
+    await this.createLinkRepository.exec({ url: data.url, urlHash: shortUrl.urlHash, pageViews: 1 })
     return ok(this.i18n.t('SHORTENED_URL_SUCCESSFULLY'), shortUrl.url)
   }
 }
