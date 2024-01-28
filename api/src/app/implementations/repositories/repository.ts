@@ -13,31 +13,30 @@ export abstract class DbRepository implements Repository {
   protected defaultItemsPerPage = env.paginatedResult.defaultItemsPerPage
   protected defaultCurrentPage = env.paginatedResult.defaultCurrentPage
 
-  async setupPagination (opts?: UcOptions): Promise<SetupPaginationData> {
+  async setupPagination(opts?: UcOptions): Promise<SetupPaginationData> {
     const itemsPerPage = opts?.itemsPerPage || this.defaultItemsPerPage
     const currentPage = opts?.currentPage || this.defaultCurrentPage
     const setupPaginationData = {
-      offset:  itemsPerPage * (currentPage - 1),
+      offset: itemsPerPage * (currentPage - 1),
       limit: itemsPerPage
     }
-    const orderBySetup = []
+    let orderBySetup: any[]
     opts.isOrderByDesc = convertToBoolean(opts.isOrderByDesc)
     if (opts.orderBy) {
-      orderBySetup.push(opts.orderBy)
-      if (opts.isOrderByDesc) {
-        orderBySetup.push('DESC')
+      if (Array.isArray(opts.orderBy)) {
+        orderBySetup = [...this.getOrderByList(opts)]
       } else {
-        orderBySetup.push('ASC')
+        orderBySetup = [...this.getOrderBy(opts)]
       }
     }
     if (orderBySetup.length > 0) {
-      setupPaginationData['order'] = [orderBySetup]
+      setupPaginationData['order'] = orderBySetup
     }
     return setupPaginationData
-  } 
+  }
 
-  async getMetadata (repo: any, queryData: any, opts?: UcOptions): Promise<RepositoryMetadata> {
-    const total = await repo.count({ where: queryData})
+  async getMetadata(repo: any, queryData: any, opts?: UcOptions): Promise<RepositoryMetadata> {
+    const total = await repo.count({ where: queryData })
     const itemsPerPage = opts?.itemsPerPage || this.defaultItemsPerPage
     const currentPage = opts?.currentPage || this.defaultCurrentPage
     return {
@@ -46,5 +45,31 @@ export abstract class DbRepository implements Repository {
       itemsPerPage: itemsPerPage,
       currentPage: currentPage
     }
-  } 
+  }
+
+  private getOrderBy(opts): any[] {
+    const orderBySetup = [];
+    orderBySetup.push(opts.orderBy)
+    if (opts.isOrderByDesc) {
+      orderBySetup.push('DESC')
+    } else {
+      orderBySetup.push('ASC')
+    }
+    return [orderBySetup];
+  }
+
+  private getOrderByList(opts): any[] {
+    const orderByList = []
+    opts.orderBy.forEach((orderByItem: string) => {
+      const currentOrderByItem = []
+      currentOrderByItem.push(orderByItem)
+      if (opts.isOrderByDesc) {
+        currentOrderByItem.push('DESC')
+      } else {
+        currentOrderByItem.push('ASC')
+      }
+      orderByList.push(currentOrderByItem)
+    })
+    return orderByList;
+  }
 }
