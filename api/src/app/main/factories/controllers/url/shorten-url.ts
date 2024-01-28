@@ -7,13 +7,14 @@ import { ShortenUrlController } from '../../../../presentation/controllers/url/s
 import { ShortenUrl } from '../../../../data/useCases/url/shorten-url'
 import { UrlShortener } from '../../../../implementations/helpers/url-shortener'
 import env from '../../../../../env'
+import { QueueManager } from '../../../../implementations/helpers/queue-manager'
 
 export const makeShortenUrlController = (): ShortenUrlController => {
   const i18n = new I18n()
   const dbORM = SequelizeORM.getInstance()
   const urlShortener = new UrlShortener(env.APP_HOST);
   const createLinkRepository = new DbCreateLinkRepository(dbORM)
-  const uc = new ShortenUrl(i18n, urlShortener, createLinkRepository)
+  const uc = new ShortenUrl(i18n, urlShortener, QueueManager.getInstance(), createLinkRepository)
   const validator = new PersonalFieldValidator()
   const log = new Log
   return  new ShortenUrlController(validator, log, uc)
