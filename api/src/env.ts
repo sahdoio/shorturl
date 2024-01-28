@@ -2,7 +2,7 @@ const env = {
   ENV: 'FROM_ENV',
   PORT: 'FROM_ENV',
   ROUTE_ROOT: '/api/v1',
-  BASE_URL: 'FROM_ENV',
+  APP_HOST: 'FROM_ENV',
   database: {
     DEFAULT: {
       DRIVER: 'postgres',

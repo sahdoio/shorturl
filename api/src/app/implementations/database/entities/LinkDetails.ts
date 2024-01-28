@@ -5,7 +5,7 @@ import { LinkDetailsEntity } from '../../../domain/entities/LinkDetails'
 
 @Table({
   tableName: 'linkDetails',
-  timestamps: true
+  timestamps: false
 })
 
 export class LinkDetails extends Model<LinkDetails> implements LinkDetailsEntity {

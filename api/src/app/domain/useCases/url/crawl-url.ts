@@ -2,9 +2,8 @@ import { Result } from '../../protocols/result'
 import { LinkEntity } from '../../entities/Link'
 
 export interface CrawlUrlDto {
-  name: string
-  description?: string
-  statusId: number
+  url: string
+  urlHash: string
 }
 
 export interface CrawlUrlUc {
