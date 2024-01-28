@@ -11,7 +11,7 @@ import env from '../../../../../env'
 export const makeShortenUrlController = (): ShortenUrlController => {
   const i18n = new I18n()
   const dbORM = SequelizeORM.getInstance()
-  const urlShortener = new UrlShortener(env.BASE_URL);
+  const urlShortener = new UrlShortener(env.APP_HOST);
   const createLinkRepository = new DbCreateLinkRepository(dbORM)
   const uc = new ShortenUrl(i18n, urlShortener, createLinkRepository)
   const validator = new PersonalFieldValidator()

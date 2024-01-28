@@ -23,19 +23,12 @@ This is an API Rest developed with NodeJs, TypeScript and Clean Architecture.
     In the app root (the same dir where is located the package.json and this README) run:
 
         docker compose up --build -d
-
-    Just to make sure node_modules was really installed run npm install
-
-        docker exec shorturl npm i
-
-    To check docker live logging:
-
-        docker-compose logs -f --tail 10
     
-    You should see the following containers active:
+    The above command will add the databases containers and the redis container as well
 
-    ![alt text](./docs/dockerps.png)
+    Install node_modules
 
+        npm install
 
 ### Database Setup ###
 
@@ -43,33 +36,39 @@ Before start to test the application you should run the migrations and seeder to
 
 * Running migration for development 
         
-        docker exec shorturl npx sequelize-cli db:migrate
+        npx sequelize-cli db:migrate
 
     ![alt text](./docs/migration.png)
 
 * Running migration for test
 
-        docker exec shorturl npx sequelize-cli db:migrate --env test
+        npx sequelize-cli db:migrate --env test
 
 * Running seeders for development 
         
-        docker exec shorturl npx sequelize-cli db:seed:all
+        npx sequelize-cli db:seed:all
 
     ![alt text](./docs/seed.png)
 
 * Running seeders for test
 
-        docker exec shorturl npx sequelize-cli db:seed:all --env test
+        npx sequelize-cli db:seed:all --env test
 
 * The final result:
   
     ![alt text](./docs/database.png)
 
+### Running project ###
+
+* Execute
+
+        npm run dev
+
 ### How to run unit tests? ###
 
 * Normal test  
         
-        docker-compose exec shorturl npx jest
+      docker-compose exec shorturl npx jest
 
     ![alt text](./docs/tests.png)
 
@@ -91,4 +90,4 @@ Before start to test the application you should run the migrations and seeder to
   
 ### Who do I talk to? ###
 
-* Lucas sahdo - lucassahdo@gmail.com
+* Lucas Sahdo - lucassahdo@gmail.com

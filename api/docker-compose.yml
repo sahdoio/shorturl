@@ -7,21 +7,6 @@ networks:
       driver: default
 
 services:
-  shorturl:
-    container_name: shorturl
-    image: shorturl
-    build:
-      context: .
-      dockerfile: ./docker/api.Dockerfile
-    volumes:
-      - './:/var/www/app'
-      - '/var/www/app/node_modules'
-    environment:
-      - npm_config_unsafe_perm=true
-    ports:
-      - "3030:3000"
-    networks:
-      - shorturl-network
 
   shorturl-db:
     container_name: shorturl-db
@@ -41,12 +26,21 @@ services:
     container_name: shorturl-test-db
     image: postgres
     environment:
-      POSTGRES_DB: shorturl-test
+      POSTGRES_DB: shorturl
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: secret
       PGDATA: /data/postgres
     ports:
       - "5433:5432"
+    restart: unless-stopped
+    networks:
+      - shorturl-network
+
+  shorturl-redis:
+    container_name: shorturl-redis
+    image: redis
+    ports:
+      - "6379:6379"
     restart: unless-stopped
     networks:
       - shorturl-network

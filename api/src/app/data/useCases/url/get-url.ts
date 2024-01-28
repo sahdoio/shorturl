@@ -11,7 +11,6 @@ export class GetUrl implements GetUrlUc {
   ) { }
 
   async exec (data: GetUrlDto): Promise<Result<string>> {
-    const { hash } = data
     const link = await this.findLinkRepository.findOne({ urlHash: data.hash })
     if (!link) {
       return notFound(this.i18n.t('NOT_FOUND'))
