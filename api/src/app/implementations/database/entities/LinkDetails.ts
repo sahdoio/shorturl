@@ -1,7 +1,9 @@
 // noinspection JSAnnotator
 
-import { Table, Column, PrimaryKey, Model } from 'sequelize-typescript'
+import { Table, Column, PrimaryKey, Model, HasMany, BelongsTo, ForeignKey } from 'sequelize-typescript'
 import { LinkDetailsEntity } from '../../../domain/entities/LinkDetails'
+import { Link } from './Link'
+import { LinkEntity } from '../../../domain/entities/Link'
 
 @Table({
   tableName: 'linkDetails',
@@ -13,6 +15,7 @@ export class LinkDetails extends Model<LinkDetails> implements LinkDetailsEntity
   @Column({ autoIncrement: true })
   id: number
 
+  @ForeignKey(() => Link)
   @Column
   linkId: number
 
@@ -21,4 +24,7 @@ export class LinkDetails extends Model<LinkDetails> implements LinkDetailsEntity
 
   @Column
   value: string
+
+  @BelongsTo(() => Link)
+  link: LinkEntity;
 }
