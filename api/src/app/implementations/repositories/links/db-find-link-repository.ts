@@ -4,7 +4,7 @@ import { DbRepository } from '../repository'
 import { ISequelizeORM } from '../../../data/protocols/utils/sequelize'
 import { Repository } from 'sequelize-typescript'
 import { Op } from 'sequelize'
-import { FindLinkDto, FindLinkRepository } from '../../../data/protocols/repositories/link/find-link-repository'
+import { FindLinkRepositoryDto, FindLinkRepository } from '../../../data/protocols/repositories/link/find-link-repository'
 import { Link } from '../../database/entities/Link'
 import { LinkEntity } from '../../../domain/entities/Link'
 import { LinkDetails } from '../../database/entities/LinkDetails'
@@ -27,7 +27,7 @@ export class DbFindLinkRepository extends DbRepository implements FindLinkReposi
     return dbORMClient.getRepository(LinkDetails)
   }
 
-  private getQueryData(data: FindLinkDto): any {
+  private getQueryData(data: FindLinkRepositoryDto): any {
     const queryData: any = {}
     const likeAttributes = ['url']
     for (let key in data) {
@@ -42,13 +42,13 @@ export class DbFindLinkRepository extends DbRepository implements FindLinkReposi
     return queryData
   }
 
-  async findOne(data: FindLinkDto): Promise<LinkEntity> {
+  async findOne(data: FindLinkRepositoryDto): Promise<LinkEntity> {
     const repo = await this.getRepo()
     const queryData = this.getQueryData(data)
     return Object.keys(queryData).length > 0 ? await repo.findOne({ where: queryData }) : null
   }
 
-  async findAll(data: FindLinkDto, opts?: UcOptions): Promise<PaginatedResult<LinkEntity[]>> {
+  async findAll(data: FindLinkRepositoryDto, opts?: UcOptions): Promise<PaginatedResult<LinkEntity[]>> {
     const repo = await this.getRepo()
     const queryData = this.getQueryData(data)
     const setupPaginationData = await this.setupPagination(opts)

@@ -1,93 +1,131 @@
-# ShorURL API #
+# ShortURL Project
 
-This is an API Rest developed with NodeJs, TypeScript and Clean Architecture.
+Welcome to ShortURL, a monorepo containing two main components: the API and the App. The API is a robust Node.js backend, and the App is a dynamic Next.js frontend.
 
-* node version: 18.18.0
-* Database: PostgreSQL
-* TypeScript
-* Tests made with Jest
-* Containers with Docker
+## Project Structure
 
-### How do I get set up? ###
+- `/api`: The Node.js backend developed with TypeScript, implementing Clean Architecture.
+- `/app`: The Next.js frontend application.
 
-* .env
-  
-  Rename or copy the .env.example to .env
+---
 
-        cp .env.example .env
+## API - Backend
 
-  The .env is configured to use docker database setup
+### Overview
 
-* build app
+This is a REST API developed with NodeJs, TypeScript, and Clean Architecture principles.
 
-    In the app root (the same dir where is located the package.json and this README) run:
+- Node version: 18.18.0
+- Database: PostgreSQL
+- TypeScript
+- Tests: Jest
+- Containers: Docker
 
-        docker compose up --build -d
-    
-    The above command will add the databases containers and the redis container as well
+### Backend Setup
 
-    Install node_modules
+Every command on the backend setup must be executed inside **api** folder.
 
-        npm install
+#### Environment Setup
 
-### Database Setup ###
+- Rename or copy the `.env.example` to `.env`:
 
-Before start to test the application you should run the migrations and seeder to setup the development database and the test database as well to run the integration tests
+      cp .env.example .env
 
-* Running migration for development 
-        
-        npx sequelize-cli db:migrate
+  The `.env` is configured to use docker database setup.
 
-    ![alt text](./docs/migration.png)
+#### Build App
 
-* Running migration for test
+- In the app root (the same dir where the package.json and this README are located), run:
 
-        npx sequelize-cli db:migrate --env test
+      docker compose up --build -d
 
-* Running seeders for development 
-        
-        npx sequelize-cli db:seed:all
+  This command will set up the databases and Redis containers.
 
-    ![alt text](./docs/seed.png)
+  ![Docker Process](./docs/dockerps.png)
 
-* Running seeders for test
+- Install node_modules:
 
-        npx sequelize-cli db:seed:all --env test
+      npm install
 
-* The final result:
-  
-    ![alt text](./docs/database.png)
+#### Database Setup
 
-### Running project ###
+Before starting the application, run migrations and seeders for both development and test databases.
 
-* Execute
+- Running migration for development:
 
-        npm run dev
+      npx sequelize-cli db:migrate
 
-### How to run unit tests? ###
+  ![Migration Process](./docs/migration.png)
 
-* Normal test  
-        
-      docker-compose exec shorturl npx jest
+- Running migration for test:
 
-    ![alt text](./docs/tests.png)
+      npx sequelize-cli db:migrate --env test
 
-* With coverage
+- Running seeders for development:
 
-        docker-compose exec shorturl npx jest --coverage
-    
-    Terminal version
+      npx sequelize-cli db:seed:all
 
-    ![alt text](./docs/tests-coverage.png)
+  ![Seeder Process](./docs/seed.png)
 
-    Html version
+- Running seeders for test:
 
-    ![alt text](./docs/tests-coverage-html.png)
+      npx sequelize-cli db:seed:all --env test
 
-* Postman Project
+- Final Database Setup:
 
-    See [Postman Collection](./docs/collection.json)
-  
-### Who do I talk to? ###
+  ![Database Setup](./docs/database.png)
 
-* Lucas Sahdo - lucassahdo@gmail.com
+#### Running the Project
+
+- To execute:
+
+      npm run dev
+
+#### Running Unit Tests
+
+- For normal tests:
+
+      npx jest
+
+  ![Test Execution](./docs/tests.png)
+
+- Postman Project:
+
+  [Postman Collection](./docs/collection.json)
+
+---
+
+## App - Frontend
+
+### Overview
+
+The ShortURL App is a responsive and user-friendly frontend developed with Next.js. It provides a seamless interface for interacting with the ShortURL API, allowing users to create and manage shortened URLs efficiently.
+
+### Frontend Setup
+
+Every command on the backend setup must be executed inside **app** folder.
+
+#### Installing Dependencies
+
+To set up the frontend, start by installing the necessary dependencies:
+
+    npm install
+
+#### Config file
+
+Rename or copy the `.env.example` to `.env`:
+ 
+    cp .env.example .env.local
+
+#### Running the Project
+
+To execute:
+
+    npm run dev
+
+---
+
+# Contact
+
+- Lucas Sahdo - lucassahdo@gmail.com
+

@@ -37,6 +37,7 @@ const TopUrls: React.FC = () => {
             <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
               {link.url}
             </a>
+            <p className="text-sm text-gray-600"><strong className="text-blue-500">Url Hash:</strong> {link.urlHash}</p>
             {link.linkDetails.map((details, index) => (
               <p className="text-sm text-gray-600"><strong className="text-blue-500">{details.name}:</strong> {details.value}</p>
             ))}
