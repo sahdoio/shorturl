@@ -71,6 +71,10 @@ Before starting the application, run migrations and seeders for both development
 
       npx sequelize-cli db:seed:all --env test
 
+- Database Modeling:
+
+  ![Database Setup](./docs/db-modeling.png)
+
 - Final Database Setup:
 
   ![Database Setup](./docs/database.png)
