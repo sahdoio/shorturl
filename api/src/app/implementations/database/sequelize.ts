@@ -27,7 +27,7 @@ export class SequelizeORM implements ISequelizeORM {
         models: [__dirname + '/../database/entities'],
         repositoryMode: true,
         logging: false,
-        query: { raw: true }
+        query: { raw: false },
       })
     }
     return SequelizeORM.instance

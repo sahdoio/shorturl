@@ -13,7 +13,6 @@ export class TopTrendingController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const { hash } = httpRequest.params
       const res = await this.uc.exec()
       return serverResponse(res)
     } catch (err) {

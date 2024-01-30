@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { Providers } from '@/lib/providers'
 import Navbar from '@/app/components/NavBar'
 import Footer from '@/app/components/Footer'
 import "@/app/globals.css"
@@ -9,15 +10,17 @@ type LayoutProps = {
 
 const AppLayout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header>
-        <Navbar/>
-      </header>
-      <main>{children}</main>
-      <footer>
-        <Footer />
-      </footer>
-    </div>
+    <Providers>
+      <div className="min-h-screen bg-gray-100">
+        <header>
+          <Navbar/>
+        </header>
+        <main>{children}</main>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
+    </Providers>
   );
 };
 

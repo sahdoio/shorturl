@@ -7,6 +7,7 @@ import { Op } from 'sequelize'
 import { FindLinkDto, FindLinkRepository } from '../../../data/protocols/repositories/link/find-link-repository'
 import { Link } from '../../database/entities/Link'
 import { LinkEntity } from '../../../domain/entities/Link'
+import { LinkDetails } from '../../database/entities/LinkDetails'
 
 export class DbFindLinkRepository extends DbRepository implements FindLinkRepository {
   constructor(
@@ -19,6 +20,11 @@ export class DbFindLinkRepository extends DbRepository implements FindLinkReposi
   private async getRepo(): Promise<Repository<Link>> {
     const dbORMClient = await this.dbORM.getClient()
     return dbORMClient.getRepository(Link)
+  }
+
+  private async getLinkDetailsRepo(): Promise<Repository<LinkDetails>> {
+    const dbORMClient = await this.dbORM.getClient()
+    return dbORMClient.getRepository(LinkDetails)
   }
 
   private getQueryData(data: FindLinkDto): any {
@@ -46,7 +52,15 @@ export class DbFindLinkRepository extends DbRepository implements FindLinkReposi
     const repo = await this.getRepo()
     const queryData = this.getQueryData(data)
     const setupPaginationData = await this.setupPagination(opts)
-    const payload = await repo.findAll({ where: queryData, ...setupPaginationData })
+    const linkDetailsRepo = await this.getLinkDetailsRepo()
+    const payload = await repo.findAll({
+      where: queryData,
+      ...setupPaginationData,
+      include: [{
+        model: linkDetailsRepo,
+        attributes: ['id', 'name', 'value']
+      }]
+    })
     const metadata = await this.getMetadata(repo, queryData, opts)
     return { payload, metadata }
   }
