@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { adaptRoute } from '../adapters/express-route-adapter'
 import { makeShortenUrlController } from '../factories/controllers/url/shorten-url'
-import { makeTopTrendingController } from '../factories/controllers/url/top-trending'
+import { makeTopTrendingController } from '../factories/controllers/trending/top-trending'
 import { makeGetUrlController } from '../factories/controllers/url/get-url'
 
 

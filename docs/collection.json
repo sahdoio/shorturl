@@ -1,253 +1,113 @@
 {
 	"info": {
-		"_postman_id": "6ed3deb5-be25-4493-8ae0-f741c38c93a3",
-		"name": "task-manager-api",
+		"_postman_id": "c0c707f4-1f1c-49e6-81a1-f9f2dbbeccf7",
+		"name": "shorturl-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4785599"
 	},
 	"item": [
 		{
-			"name": "auth",
-			"item": [
+			"name": "Shorten URL",
+			"event": [
 				{
-					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"pm.collectionVariables.set(\"token\", jsonData.data.accessToken);"
-								],
-								"type": "text/javascript"
-							}
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"https://slack.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/shorten",
+					"host": [
+						"{{api}}"
 					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin@test.com\",\n    \"password\": \"123456\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{api}}/auth/login",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
+					"path": [
+						"shorten"
+					]
 				}
-			]
+			},
+			"response": []
 		},
 		{
-			"name": "users",
-			"item": [
+			"name": "Get Source URL",
+			"event": [
 				{
-					"name": "Create New User",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"heitor.garcia@gmail.com\",\n    \"firstName\": \"Heitor\",\n    \"lastName\": \"Garcia\",\n    \"phoneNumber\": \"19996987012\",\n    \"password\": \"123456\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{api}}/users",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/get-url/:hash",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"get-url",
+						":hash"
+					],
+					"variable": [
+						{
+							"key": "hash",
+							"value": "ZBbiQD"
+						}
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"name": "tasks",
-			"item": [
+			"name": "Top Trending",
+			"event": [
 				{
-					"name": "Create New Task",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"task test\",\n    \"description\": \"description test\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{api}}/tasks",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"tasks"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Find Tasks",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"task\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{api}}/tasks?itemsPerPage=2&currentPage=1&orderBy=createdAt&isOrderByDesc=true",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"tasks"
-							],
-							"query": [
-								{
-									"key": "itemsPerPage",
-									"value": "2"
-								},
-								{
-									"key": "currentPage",
-									"value": "1"
-								},
-								{
-									"key": "orderBy",
-									"value": "createdAt"
-								},
-								{
-									"key": "isOrderByDesc",
-									"value": "true"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Task",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{api}}/tasks/:taskId",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"tasks",
-								":taskId"
-							],
-							"variable": [
-								{
-									"key": "taskId",
-									"value": "12"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Task",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"statusId\": 3\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{api}}/tasks/:taskId",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"tasks",
-								":taskId"
-							],
-							"variable": [
-								{
-									"key": "taskId",
-									"value": "41"
-								}
-							]
-						}
-					},
-					"response": []
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/top-trending",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"top-trending"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"name": "Api alive",
+			"name": "Api Alive",
 			"request": {
 				"method": "GET",
 				"header": [],
