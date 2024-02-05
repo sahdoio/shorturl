@@ -10,6 +10,8 @@ const config: Config = {
     'entities',
     'database',
     'helpers',
+    'middlewares',
+    'repositories',
     'env',
     'server.ts',
     'errors/index.ts'

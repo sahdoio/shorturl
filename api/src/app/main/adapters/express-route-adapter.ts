@@ -17,7 +17,6 @@ export const adaptRoute = (controller: Controller) => {
       params: req.params,
       query: req.query,
       headers: req.headers,
-      currentUser: req.currentUser,
       request: {
         path: req.path,
         verb: req.method,

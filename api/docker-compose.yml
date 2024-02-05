@@ -5,7 +5,6 @@ networks:
       driver: default
 
 services:
-
   shorturl-db:
     container_name: shorturl-db
     image: postgres
@@ -24,7 +23,7 @@ services:
     container_name: shorturl-test-db
     image: postgres
     environment:
-      POSTGRES_DB: shorturl
+      POSTGRES_DB: shorturl-test
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: secret
       PGDATA: /data/postgres

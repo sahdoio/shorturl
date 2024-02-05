@@ -17,5 +17,5 @@ export const makeShortenUrlController = (): ShortenUrlController => {
   const uc = new ShortenUrl(i18n, urlShortener, QueueManager.getInstance(), createLinkRepository)
   const validator = new PersonalFieldValidator()
   const log = new Log
-  return  new ShortenUrlController(validator, log, uc)
+  return new ShortenUrlController(validator, log, uc)
 }

@@ -2,6 +2,8 @@
 
 Welcome to ShortURL, a monorepo containing two main components: the API and the App. The API is a robust Node.js backend, and the App is a dynamic Next.js frontend.
 
+  ![Docker Process](./docs/project-preview.png)
+
 ## Project Structure
 
 - `/api`: The Node.js backend developed with TypeScript, implementing Clean Architecture.
@@ -27,11 +29,13 @@ Every command on the backend setup must be executed inside **api** folder.
 
 #### Environment Setup
 
+- In root folder, run:
+
+      cd api
+
 - Rename or copy the `.env.example` to `.env`:
 
       cp .env.example .env
-
-  The `.env` is configured to use docker database setup.
 
 #### Build App
 
@@ -43,9 +47,11 @@ Every command on the backend setup must be executed inside **api** folder.
 
   ![Docker Process](./docs/dockerps.png)
 
-- Install node_modules:
+- If you have nodejs 18.08 installed locally, then execute:
 
       npm install
+
+- If you don't have nodejs 18.08 installed locally, then I recommend installing nvm in your machine: [Install NVM](https://github.com/nvm-sh/nvm)
 
 #### Database Setup
 
@@ -93,6 +99,12 @@ Before starting the application, run migrations and seeders for both development
 
   ![Test Execution](./docs/tests.png)
 
+- With coverage:
+
+      npx jest --coverage
+
+  ![Test Execution](./docs/tests-coverage-html.png)
+
 - Postman Project:
 
   [Postman Collection](./docs/collection.json)
@@ -109,27 +121,32 @@ The ShortURL App is a responsive and user-friendly frontend developed with Next.
 
 Every command on the backend setup must be executed inside **app** folder.
 
+- In root folder, run:
+
+      cd app
+
 #### Installing Dependencies
 
-To set up the frontend, start by installing the necessary dependencies:
+- To set up the frontend, start by installing the necessary dependencies:
 
-    npm install
+      npm install
 
 #### Config file
 
-Rename or copy the `.env.example` to `.env`:
+- Rename or copy the `.env.example` to `.env`:
  
-    cp .env.example .env.local
+      cp .env.example .env.local
 
 #### Running the Project
 
-To execute:
+- To execute:
 
-    npm run dev
+      npm run dev
 
 ---
 
 # Contact
 
 - Lucas Sahdo - lucassahdo@gmail.com
+- My website: [https://sahdo.io](https://sahdo.io)
 
