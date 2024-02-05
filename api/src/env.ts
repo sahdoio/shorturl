@@ -21,6 +21,10 @@ const env = {
       NAME: 'FROM_ENV'
     },
   },
+  redis: {
+    HOST: 'FROM_ENV',
+    PORT: 6379,
+  },
   i18n: {
     LOCALES: ['en'],
     DEFAULT_LOCALE: 'en'

@@ -1,4 +1,3 @@
-import { LinkEntity } from '../../entities/Link'
 import { Result } from '../../protocols/result'
 
 export interface ShortenUrlDto {

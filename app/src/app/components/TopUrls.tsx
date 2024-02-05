@@ -21,7 +21,7 @@ const TopUrls: React.FC = () => {
   }, [])
 
   return (
-    <div className="max-w-xl mx-auto p-4 bg-white rounded shadow">
+    <div className="max-w-xl mx-auto p-4 bg-white rounded shadow mb-10">
       <div className="flex justify-end">
         <button
           onClick={ fetchData }
@@ -39,7 +39,7 @@ const TopUrls: React.FC = () => {
             </a>
             <p className="text-sm text-gray-600"><strong className="text-blue-500">Url Hash:</strong> {link.urlHash}</p>
             {link.linkDetails.map((details, index) => (
-              <p className="text-sm text-gray-600"><strong className="text-blue-500">{details.name}:</strong> {details.value}</p>
+              <p key={ 'linkDetails_' + index } className="text-sm text-gray-600"><strong className="text-blue-500">{details.name}:</strong> {details.value}</p>
             ))}
             <p className="text-sm text-gray-600"><strong className="text-blue-500">Page Accesses:</strong> {link.pageViews}</p>
           </li>

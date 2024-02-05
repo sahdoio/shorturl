@@ -1,4 +1,3 @@
-import { LinkEntity } from '../../../domain/entities/Link'
 import { Result } from '../../../domain/protocols/result'
 import { ok } from '../../helpers/result'
 import { CreateLinkRepository } from '../../protocols/repositories/link/create-link-repository'
