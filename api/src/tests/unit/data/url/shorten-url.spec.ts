@@ -8,8 +8,10 @@ import { CreateLinkRepositoryStub } from '../../../utils/stubs/repositories/link
 import { CreateLinkRepositoryDto } from '../../../../app/data/protocols/repositories/link/create-link-repository'
 import { linkEntityMock } from '../../../utils/mocks/link/link-entity-mock'
 import { QueueManagerStub } from '../../../utils/stubs/helpers/queue-manager-stub'
-import env from '../../../../env'
 import { UrlShortenerStub } from '../../../utils/stubs/helpers/url-shortener-stub'
+import env from '../../../../env'
+import { SequelizeORM } from '../../../../app/implementations/database/sequelize'
+import Config from '../../../../config/config'
 
 interface SutTypes {
   sut: ShortenUrlUc
@@ -21,6 +23,7 @@ interface SutTypes {
 
 const makeSut = (): SutTypes => {
   new Application(true)
+
   const createLinkRepositoryDto: CreateLinkRepositoryDto = {
     url: linkEntityMock.url,
     urlHash: linkEntityMock.urlHash,

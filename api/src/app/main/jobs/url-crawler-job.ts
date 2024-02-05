@@ -2,8 +2,9 @@ import { QueueManager } from '../../implementations/helpers/queue-manager'
 import { IQueueManager } from '../../data/protocols/utils/queue-manager'
 import { makeCrawlUrlController } from '../factories/controllers/url/crawl-url'
 import { JobRequest } from '../../presentation/protocols/job-request'
+import { Job } from '../protocols/Job'
 
-export class UrlCrawlerJob {
+export class UrlCrawlerJob implements Job {
   private queueManager: IQueueManager
 
   constructor() {
@@ -14,7 +15,7 @@ export class UrlCrawlerJob {
     this.queueManager = QueueManager.getInstance()
   }
 
-  start(): void {
+  public start(): void {
     this.queueManager.addWorker('url-crawler', async (job: any) => {
       console.log('Job UrlCrawlerJob is running', new Date().toUTCString())
       const controller = makeCrawlUrlController()

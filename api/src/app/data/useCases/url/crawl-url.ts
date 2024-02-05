@@ -16,7 +16,7 @@ export class CrawlUrl implements CrawlUrlUc {
   ) {
   }
 
-  async exec(data: CrawlUrlDto): Promise<Result<LinkEntity>> {
+  async exec(data: CrawlUrlDto): Promise<Result<void>> {
     const { url, urlHash } = data
     const link = await this.findLinkRepository.findOne({ urlHash })
     if (!link) {

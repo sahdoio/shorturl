@@ -1,6 +1,5 @@
-import { Request } from 'express'
-import { LoggedUser } from '../../domain/useCases/auth/authorizer'
+/* istanbul ignore file */
 
-export interface DefaultRequest extends Request {
-  currentUser: LoggedUser
-}
+import { Request } from 'express'
+
+export interface DefaultRequest extends Request {}

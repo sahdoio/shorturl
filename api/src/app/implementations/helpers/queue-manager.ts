@@ -1,27 +1,33 @@
 import { Queue, Worker, QueueEvents } from 'bullmq'
+import Redis from 'ioredis'
 import { IQueueManager } from '../../data/protocols/utils/queue-manager'
+import env from '../../../env'
 
 export class QueueManager implements IQueueManager {
   private static instance: QueueManager
   public queue: Queue
+  public redis: Redis
   public queueEvents: QueueEvents
   private static readonly queueName: string = 'defaultQueue'
-  private static readonly connectionDetails: {
+  private static connectionDetails: {
     host: string
     port: number
-  } = {
-    host: '127.0.0.1',
-    port: 6379,
+    maxRetriesPerRequest: number|null
   }
 
-  constructor() {
-  }
+  constructor() {}
 
   public static getInstance(): QueueManager {
+    QueueManager.connectionDetails = {
+      host: env.redis.HOST,
+      port: env.redis.PORT,
+      maxRetriesPerRequest: null
+    }
     if (!QueueManager.instance) {
       QueueManager.instance = new QueueManager()
       // noinspection JSAnnotator
-      QueueManager.instance.queue = new Queue(QueueManager.queueName, { connection: QueueManager.connectionDetails })
+      QueueManager.instance.redis = new Redis(QueueManager.connectionDetails)
+      QueueManager.instance.queue = new Queue(QueueManager.queueName, { connection: QueueManager.instance.redis })
       QueueManager.instance.queueEvents = new QueueEvents(QueueManager.queueName)
     }
     return QueueManager.instance
@@ -37,7 +43,7 @@ export class QueueManager implements IQueueManager {
       if (job.name === jobName) {
         callback(job)
       }
-    }, { connection: QueueManager.connectionDetails })
+    }, { connection: QueueManager.instance.redis })
   }
 
   public onSuccess(callback: any): void {

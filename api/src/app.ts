@@ -11,6 +11,12 @@ import { StatusCodes } from 'http-status-codes'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 
+declare global {
+  interface Array<T> {
+    last(): T | undefined;
+  }
+}
+
 export class Application {
   public app: Express
   public readonly rootDir: string
@@ -29,6 +35,10 @@ export class Application {
       this.setupMiddlewares()
       this.setupRoutes()
       this.setupSwagger()
+    }
+
+    Array.prototype.last = function <T>() {
+      return this[this.length - 1]
     }
   }
 
@@ -52,6 +62,10 @@ export class Application {
       PASSWORD: process.env.DB_TEST_PASSWORD,
       NAME: process.env.DB_TEST_NAME
     }
+    env.redis = {
+      HOST: process.env.REDIS_HOST,
+      PORT: parseInt(process.env.REDIS_PORT)
+    }
   }
 
   private setupMiddlewares(): void {
@@ -72,7 +86,7 @@ export class Application {
 
   private setupRoutes(): void {
     this.app.get('/', (req: Request, res: Response) => {
-      res.send(`API is alive in ${process.env.NODE_ENV} environment`)
+      res.send(`API is alive in ${ process.env.NODE_ENV } environment`)
     })
     const router = Router()
     this.app.use(env.ROUTE_ROOT, router)

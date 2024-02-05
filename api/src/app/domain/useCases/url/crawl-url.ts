@@ -7,5 +7,5 @@ export interface CrawlUrlDto {
 }
 
 export interface CrawlUrlUc {
-  exec: (data: CrawlUrlDto) => Promise<Result<LinkEntity>>
+  exec: (data: CrawlUrlDto) => Promise<Result<void>>
 }

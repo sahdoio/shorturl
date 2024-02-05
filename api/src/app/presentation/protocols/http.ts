@@ -1,5 +1,3 @@
-import { LoggedUser } from '../../domain/useCases/auth/authorizer'
-
 export interface Request {
   verb: string
   path: string
@@ -15,5 +13,4 @@ export interface HttpRequest {
   query?: any
   params?: any
   headers?: any
-  currentUser?: LoggedUser
 }

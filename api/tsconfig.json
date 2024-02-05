@@ -2,10 +2,10 @@
   "compilerOptions": {
     "outDir": "./dist",
     "module": "commonjs",
-    "target": "es2018",
+    "target": "es2021",
     "esModuleInterop": true,
     "allowJs": true,
-    "experimentalDecorators": true, 
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
   "include": ["src", "tests", "env.ts"],
